@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - ShrineObject
+  - Golfball
   layers:
   - Default
   - TransparentFX

@@ -11807,6 +11807,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ce7e3493fb15ad4dbbc406eb0f2fb66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 681213865}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ce7e3493fb15ad4dbbc406eb0f2fb66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 681213866}
   m_SourcePrefab: {fileID: 100100000, guid: 5ce7e3493fb15ad4dbbc406eb0f2fb66, type: 3}
 --- !u!1 &681213859 stripped
 GameObject:
@@ -12006,6 +12009,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystemToToggle: {fileID: 1896321740}
+--- !u!114 &681213866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681213859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be173e146aa669847be2f6117c59caeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnType: 1
+  player: {fileID: 1074160056}
+  resetDistance: 20
 --- !u!1 &683049254
 GameObject:
   m_ObjectHideFlags: 0
@@ -18353,7 +18371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be173e146aa669847be2f6117c59caeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golfball: {fileID: 800172327}
+  respawnType: 0
   player: {fileID: 1074160056}
   resetDistance: 20
 --- !u!1001 &820161523
@@ -22564,6 +22582,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 41fef8225a2344ed58944b7b19501f90, type: 3}
   m_PrefabInstance: {fileID: 1113923372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1138619829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2718933903792333736, guid: a80cd58710501574a9bfcea396147e5e, type: 3}
+  m_PrefabInstance: {fileID: 3838456887009602771}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1143225776
 PrefabInstance:
@@ -47817,6 +47840,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5555565186332005662, guid: a80cd58710501574a9bfcea396147e5e, type: 3}
   m_PrefabInstance: {fileID: 3838456887009602771}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3347769363345808101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138619829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be173e146aa669847be2f6117c59caeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnType: 2
+  player: {fileID: 1074160056}
+  resetDistance: 20
 --- !u!1001 &3838456887009602771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47884,7 +47922,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2718933903792333736, guid: a80cd58710501574a9bfcea396147e5e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3347769363345808101}
   m_SourcePrefab: {fileID: 100100000, guid: a80cd58710501574a9bfcea396147e5e, type: 3}
 --- !u!1 &5151347265836978938 stripped
 GameObject:

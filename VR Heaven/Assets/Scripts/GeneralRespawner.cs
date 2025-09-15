@@ -25,7 +25,7 @@ public class GeneralRespawner : MonoBehaviour
         switch (respawnType)
         {
             case RespawnType.Golfball:
-                resetPosition = new Vector3(1.983227f, 2.153145f, 14.004799f);
+                resetPosition = new Vector3(1.983227f, 2.153145f, 10.104799f);
                 resetRotation = Quaternion.identity;
                 resetScale = new Vector3(0.15f, 0.15f, 0.15f);
                 break;

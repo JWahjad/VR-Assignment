@@ -5,6 +5,7 @@ public class SummonLargeShrine : MonoBehaviour
     [SerializeField] private string smallShrineTag = "ShrineObject";
     [SerializeField] private GameObject largeShrine;
     [SerializeField] private float moveSpeed = 2.0f;
+    [SerializeField] private CameraShake cameraShake;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +20,10 @@ public class SummonLargeShrine : MonoBehaviour
 
     private System.Collections.IEnumerator MoveShrineUp(Transform shrineTransform)
     {
+        // Start screenshake
+        if (cameraShake != null)
+            StartCoroutine(cameraShake.Shake(5.5f, 0.1f));
+
         Vector3 startPos = shrineTransform.position;
         Vector3 targetPos = new Vector3(startPos.x, 0.5f, startPos.z);
 

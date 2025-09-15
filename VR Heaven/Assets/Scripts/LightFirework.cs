@@ -38,7 +38,7 @@ public class LightFirework : MonoBehaviour
 
     void Update()
     {
-        if (!isLit && (IsTriggerPressed(XRNode.LeftHand) || IsTriggerPressed(XRNode.RightHand)))
+        if (grabInteractable.isSelected && !isLit && (IsTriggerPressed(XRNode.LeftHand) || IsTriggerPressed(XRNode.RightHand)))
         {
             isLit = true;
             if (fireworkParticles != null)

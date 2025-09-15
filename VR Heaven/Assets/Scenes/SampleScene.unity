@@ -4801,10 +4801,11 @@ MonoBehaviour:
   skyboxDay: {fileID: 2100000, guid: 4e154bf235e41704bbd6bbc6fd6c63f6, type: 2}
   skyboxNight: {fileID: 2100000, guid: d4454f71d85928744be7771e2143dab7, type: 2}
   transitionDelay: 1
-  fadeImage: {fileID: 287759384}
   fadeDuration: 0.5
+  fadeImage: {fileID: 287759384}
   directionalLight: {fileID: 1815318736}
   audioManager: {fileID: 1270213396}
+  fireworksEffect: {fileID: 1620158253}
 --- !u!4 &550458936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ce7e3493fb15ad4dbbc406eb0f2fb66, type: 3}

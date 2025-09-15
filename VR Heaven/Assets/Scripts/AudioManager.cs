@@ -4,7 +4,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioClip backgroundMusic, fireworksSfx;
     [SerializeField] private float musicVolume = 0.5f;
-    [SerializeField] private float fireworksVolume = 1f;
+    [SerializeField] private float fireworksVolume = 0.5f;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource fireworksSource;
 

@@ -5,13 +5,12 @@ using System.Collections;
 public class GolfballHitChecker : MonoBehaviour
 {
     [SerializeField] private string golfballTag = "Golfball";
-    [SerializeField] private Material skyboxDay;   // day skybox
-    [SerializeField] private Material skyboxNight; // night skybox
-    [SerializeField] private float transitionDelay = 1f;
+    [SerializeField] private Material skyboxDay, skyboxNight;   // skyboxes
+    [SerializeField] private float transitionDelay = 1f, fadeDuration = 0.5f;
     [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private Light directionalLight;
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private GameObject fireworksEffect;
 
     private bool isTransitioning = false;
 
@@ -49,6 +48,9 @@ public class GolfballHitChecker : MonoBehaviour
         {
             Debug.Log(audioManager);
             audioManager.PlayFireworks();
+
+            if (fireworksEffect != null)
+                fireworksEffect.SetActive(true);
         }
 
         Debug.Log("Waiting");

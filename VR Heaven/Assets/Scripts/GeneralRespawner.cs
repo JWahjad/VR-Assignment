@@ -25,7 +25,7 @@ public class GeneralRespawner : MonoBehaviour
         switch (respawnType)
         {
             case RespawnType.Golfball:
-                resetPosition = new Vector3(1.983227f, 1.153145f, 14.004799f);
+                resetPosition = new Vector3(1.983227f, 2.153145f, 14.004799f);
                 resetRotation = Quaternion.identity;
                 resetScale = new Vector3(0.15f, 0.15f, 0.15f);
                 break;
@@ -44,7 +44,14 @@ public class GeneralRespawner : MonoBehaviour
 
     private void Update()
     {
-        if (player != null)
+        if (respawnType == RespawnType.Golfball)
+        {
+            if (transform.position.y < 0.5f)
+            {
+                Respawn();
+            }
+        }
+        else if (player != null)
         {
             float distance = Vector3.Distance(transform.position, player.position);
             if (distance > resetDistance)
@@ -54,10 +61,10 @@ public class GeneralRespawner : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Respawn();
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     Respawn();
+    // }
 
     public void Respawn()
     {

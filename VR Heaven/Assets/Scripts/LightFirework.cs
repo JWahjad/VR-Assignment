@@ -14,7 +14,16 @@ public class LightFirework : MonoBehaviour
     [SerializeField] private ParticleSystem fireworkParticles, explosionParticles;
     [SerializeField] private float explosionDelay = 5.0f;
     [SerializeField] private GameObject fireworkModel;
-    [SerializeField] private float fuzeLightDelay = 1.0f;  // Delay for fuze to light before launching
+    [SerializeField] private float fuzeLightDelay = 1.0f;
+    
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource fuseAudio;
+    [SerializeField] private AudioSource launchAudio;
+    [SerializeField] private AudioSource explosionAudio;
+    [SerializeField] private AudioSource fadeAudio;
+
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
 
     private bool isLit = false;
     private bool isLaunched = false;
@@ -23,11 +32,12 @@ public class LightFirework : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
     }
 
     void Update()
     {
-        // Trigger firework lighting and launching
         if (!isLit && (IsTriggerPressed(XRNode.LeftHand) || IsTriggerPressed(XRNode.RightHand)))
         {
             isLit = true;
@@ -39,34 +49,54 @@ public class LightFirework : MonoBehaviour
 
     private IEnumerator LightFuzeAndLaunch()
     {
-        // Light the fuze first
-        yield return new WaitForSeconds(fuzeLightDelay);  // Delay before launching
+        if (fuseAudio != null) fuseAudio.Play();
+        yield return new WaitForSeconds(fuzeLightDelay);
 
-        // Now launch the firework
+
         if (!isLaunched)
         {
             LaunchObject();
             isLaunched = true;
-            yield return new WaitForSeconds(1f); // wait a bit before explosion
+            if (launchAudio != null) launchAudio.Play();
+            yield return new WaitForSeconds(1f);
         }
 
-        // Wait for the explosion delay after launch
         yield return new WaitForSeconds(explosionDelay);
 
-        // Explode the firework
         if (explosionParticles != null)
             explosionParticles.Play();
 
+        if (explosionAudio != null)
+            explosionAudio.Play();
+
+        yield return new WaitForSeconds(0.3f);
+        if (fadeAudio != null)
+            fadeAudio.Play();
+
         fireworkParticles.Stop();
         fireworkModel.SetActive(false);
+
+        // Destroy rocket after explosion
+        yield return new WaitForSeconds(2.5f);
+        // Destroy(gameObject);
+
+        // Respawn new rocket
+        ResetFirework();
+        // Debug.Log("Respawning firework...");
+        // if (fireworkPrefab != null)
+        // {
+        //     Debug.Log("Instantiating new firework at original position.: " + fireworkPrefab);
+        //     Instantiate(fireworkPrefab, originalPosition, originalRotation);
+        // }
     }
 
     private void LaunchObject()
     {
         if (grabInteractable.isSelected)
         {
-            // Use the new method signature with IXRSelectInteractable
-            grabInteractable.interactionManager.CancelInteractableSelection(grabInteractable as UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable);
+            grabInteractable.interactionManager.CancelInteractableSelection(
+                grabInteractable as UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable
+            );
         }
 
         Vector3 launchDirection = (Vector3.up * 2f + Vector3.forward).normalized;
@@ -83,5 +113,29 @@ public class LightFirework : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    private void ResetFirework()
+    {
+       // Reset internal states
+        isLit = false;
+        isLaunched = false;
+
+        // Reset model and particle systems
+        fireworkModel.SetActive(true);
+        if (fireworkParticles != null) fireworkParticles.Stop();
+        if (explosionParticles != null) explosionParticles.Stop();
+
+        // Reset physics
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+
+        // Stop any playing audio
+        if (fuseAudio != null) fuseAudio.Stop();
+        if (launchAudio != null) launchAudio.Stop();
+        if (explosionAudio != null) explosionAudio.Stop();
+        if (fadeAudio != null) fadeAudio.Stop();
     }
 }
